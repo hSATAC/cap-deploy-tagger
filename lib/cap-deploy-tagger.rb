@@ -8,9 +8,10 @@ module CapDeployTagger
   class Helper
     
     def self.tag(tag, stage)
-      git "tag -f #{tag}_#{stage}"
-      git "push -f --tags"
-      "#{tag}_#{stage}"
+      tag_name = "#{stage}/#{tag}"
+      git "tag -f #{tag_name}"
+      git "push origin #{tag_name}" # FIXME: force origin is not good.
+      tag_name
     end
     
     def self.git(cmd)
