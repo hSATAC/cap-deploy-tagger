@@ -9,7 +9,6 @@ module CapDeployTagger
     def self.tag(tag, stage)
       tag_name = "#{stage}/#{tag}"
       current_sha = latest_revision
-      logger.log Capistrano::Logger::INFO, "Tagging #{current_sha} for deployment"
       git "tag -a #{tag_name} -m '#{username} deployed #{current_sha}.'"
       git "push --tags" # FIXME: force origin is not good.
       tag_name
