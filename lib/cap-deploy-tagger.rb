@@ -6,7 +6,6 @@ load File.expand_path("../cap-deploy-tagger/tasks/tagger.rake", __FILE__)
 
 module CapDeployTagger
   class Helper
-
     def self.tag(tag, stage)
       tag_name = "#{stage}/#{tag}"
       current_sha = latest_revision
@@ -31,4 +30,5 @@ module CapDeployTagger
     def self.username
       `git config user.name`
     end
+  end
 end
