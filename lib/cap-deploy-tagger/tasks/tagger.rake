@@ -1,5 +1,5 @@
 namespace :deploy do
-  
+
   desc "Tag deployed release"
   task :tag do
     if ENV['SKIP_DEPLOY_TAGGING'] || fetch(:skip_deploy_tagging, false)
@@ -9,7 +9,9 @@ namespace :deploy do
       puts "[cap-deploy-tagger] Tagged #{CapDeployTagger::Helper.latest_revision} with #{tag}"
     end
   end
-  
+
+  #before 'deploy', 'git:prepare_tree'
+  #before 'deploy:migrations', 'git:prepare_tree'
   after :cleanup, 'deploy:tag'
-  
+
 end
